@@ -4,6 +4,8 @@ card_light_group_count:
     - ulm_translation_engine
     - ulm_language_variables
     - "extended_card"
+  variables:
+    - ulm_custom_card_group_light_enable_slider: false
   custom_fields:
     item1:
       card:
@@ -14,8 +16,9 @@ card_light_group_count:
           [[[
             let vars = structuredClone(variables);
             
-            //TODO: Make variable for if the count control should have slider
-            vars.ulm_card_light_enable_slider = false;
+            // Set the enable slider to the group slider var (which defaults to false).
+            // Without this the slider would follow the normal slider var.
+            vars.ulm_card_light_enable_slider = vars.ulm_custom_card_group_light_enable_slider;
 
             return vars;
           ]]]

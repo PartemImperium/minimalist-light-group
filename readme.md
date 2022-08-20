@@ -39,8 +39,9 @@ This card needs the following to function correctly:
   entity: light.dining_room_lights
 </code></pre>
 
-<!-- Currently dont use any variables. I plan on eventually passing the vars from lights down but dont currently
 ## Variables
+Variables are passed into the individual light controls (and the group light control). As such any variable for the [native minimalist light control](https://ui-lovelace-minimalist.github.io/UI/usage/cards/card_light/#variables) can be passed to affect the controls. However the "ulm_card_light_enable_slider" variable is overriden to always be false on the group control.
+<!-- 
 <table>
 <tr>
 <th>Variable</th>

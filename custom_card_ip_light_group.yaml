@@ -10,10 +10,15 @@ card_light_group_count:
         type: "custom:button-card"
         template: card_light
         entity: "[[[ return entity.entity_id ]]]"
-        variables: #TODO: Pass light vars from ourself to the various light cards
-          ulm_card_light_enable_slider: false
-          ulm_card_light_enable_color: true
-          ulm_card_light_force_background_color: true
+        variables: >
+          [[[
+            let vars = structuredClone(variables);
+            
+            //TODO: Make variable for if the count control should have slider
+            vars.ulm_card_light_enable_slider = false;
+
+            return vars;
+          ]]]
         custom_fields:
           item1:
             card:
@@ -56,10 +61,7 @@ card_light_group_count:
                       type:  "custom:button-card"
                       template: card_light
                       entity: this.entity_id
-                      variables:
-                        ulm_card_light_enable_slider: true
-                        ulm_card_light_enable_color: true
-                        ulm_card_light_force_background_color: true
+                      variables: "[[[ return structuredClone(variables); ]]]"
               card: #TODO: Look into if minimalist has any way to have a array of cards in a grid.
                 type: grid
                 square: false
@@ -69,8 +71,6 @@ card_light_group_count:
             - position: relative
           custom_fields:
             lights:
-              - background-color: 'coral'
+              # - background-color: 'coral'
               - grid-area: 'unset'
               # - position: absolute
-
-

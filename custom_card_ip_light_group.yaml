@@ -1,0 +1,76 @@
+---
+card_light_group_count:
+  template:
+    - ulm_translation_engine
+    - ulm_language_variables
+    - "extended_card"
+  custom_fields:
+    item1:
+      card:
+        type: "custom:button-card"
+        template: card_light
+        entity: "[[[ return entity.entity_id ]]]"
+        variables: #TODO: Pass light vars from ourself to the various light cards
+          ulm_card_light_enable_slider: false
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+        custom_fields:
+          item1:
+            card:
+              custom_fields:
+                item2:
+                  card:
+                    group_expand: true
+                    label: >
+                      [[[
+                        let lightCount = entity?.attributes?.entity_id?.filter(e => hass?.states[e]?.state == "on").length;
+                        if (lightCount === undefined)
+                        {
+                          return variables.ulm_translation_unavailable;
+                        }
+                        else if (lightCount === 0)
+                        {//TODO: Find better localization for "No lights"
+                          return `No lights ${variables.ulm_translation_on}`;
+                        }
+                        else
+                        {//TODO: Find better localization for "lights"
+                          return `${lightCount} lights ${variables.ulm_translation_on}`;
+                        }
+                      ]]]
+    item2:
+      card:
+        type: custom:button-card
+        entity: "[[[ return entity.entity_id ]]]"
+        show_label: false
+        show_name: false
+        show_icon: false
+        custom_fields:
+          lights:
+            card:
+              type: custom:auto-entities
+              card_param: cards
+              filter:
+                include:
+                  - group: "[[[ return entity.entity_id ]]]"
+                    options:
+                      type:  "custom:button-card"
+                      template: card_light
+                      entity: this.entity_id
+                      variables:
+                        ulm_card_light_enable_slider: true
+                        ulm_card_light_enable_color: true
+                        ulm_card_light_force_background_color: true
+              card: #TODO: Look into if minimalist has any way to have a array of cards in a grid.
+                type: grid
+                square: false
+                columns: 2
+        styles:
+          grid:
+            - position: relative
+          custom_fields:
+            lights:
+              - background-color: 'coral'
+              - grid-area: 'unset'
+              # - position: absolute
+
+

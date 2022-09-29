@@ -7,12 +7,16 @@ This is a custom-card to give a count of how many lights in a group are on as we
 
 ## Credits
 Author: PartemImperium - 2022  
-Version: 1.0.0  
+Version: 1.0.1
 
 ## Changelog
 <details>
-<summary>1.0.0</summary>
-Initial release
+  <summary>1.0.1</summary>
+  Fix issue with a blank space in the controls on larger screen sizes.
+</details>
+<details>
+  <summary>1.0.0</summary>
+  Initial release
 </details>
 
 ## Requirements

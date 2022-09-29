@@ -70,10 +70,12 @@ card_light_group_count:
                 square: false
                 columns: 2
         styles:
-          grid:
-            - position: relative
+          card:
+            - padding-bottom: "0px"
           custom_fields:
             lights:
-              # - background-color: 'coral'
-              - grid-area: 'unset'
-              # - position: absolute
+              - width: "100%"
+          grid:
+            - grid-template-areas: "lights"
+            - display: "flex"
+            - justify-content: "start"
